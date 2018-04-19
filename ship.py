@@ -1,8 +1,6 @@
 # _*_ coding: utf-8 _*_
 __date__ = '2018/4/17 下午6:55'
 import pygame
-import settings
-
 
 class Ship(object):
     def __init__(self, ai_setting, screen):

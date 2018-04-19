@@ -3,7 +3,7 @@ __date__ = '2018/4/17 下午6:27'
 
 import sys
 import pygame
-
+from pygame.sprite import Group
 from settings import Settings
 from ship import Ship
 import game_functions as gf
@@ -11,14 +11,16 @@ import game_functions as gf
 
 def run_game():
     pygame.init()
-    ai_setting = Settings()
-    screen = pygame.display.set_mode((ai_setting.screen_width, ai_setting.screen_height))
-    pygame.display.set_caption(ai_setting.captcha)
-    ship = Ship(ai_setting,screen)
+    ai_settings = Settings()
+    screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
+    pygame.display.set_caption(ai_settings.captcha)
+    ship = Ship(ai_settings, screen)
+    bullets = Group()
     while True:
-        gf.check_events(ship)
+        gf.check_events(ai_settings, screen, ship, bullets)
         ship.update()
-        gf.update_screen(ai_setting, screen, ship)
+        bullets.update()
+        gf.update_screen(ai_settings, screen, ship, bullets)
 
 
 if __name__ == '__main__':
